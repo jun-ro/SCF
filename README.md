@@ -31,7 +31,7 @@ Simply head over to releases and install the latest .rbxm file. Open it and drag
 - **Animation Module** - Used for dynamic loading of animations that come preloaded.
 - **Networking Module** - Used for easily defining server/client events in modules, again, without any manual work.
 - **ServerManagement Module** - Used for defining and executing server-side functions.
-- **Util Module*** - Contains functions for everyday QOF functions.
+- **Util Module** - Contains functions for everyday QOF functions.
 
 
 
