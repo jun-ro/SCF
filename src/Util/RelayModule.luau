@@ -14,7 +14,7 @@ function RelayModule:CreateRelay(hostName: string, eventName: string, callFuncti
 		self.Relays[hostName] = {}
 		self.Relays[hostName][eventName] = callFunction
 	else
-		error(`{hostName} was already found within available relays!`)
+		self.Relays[hostName][eventName] = callFunction
 	end
 end
 
