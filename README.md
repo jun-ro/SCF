@@ -10,6 +10,11 @@
 
 </div>
 
+<div align="center">
+
+  <a href="">![LUA BABY](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)</a>
+</div>
+
 # SCF
 
 SCF or Simple Combat Framework, is a set of modules and utilities designed specifically for combat games on the popular gaming platform known as Roblox. Written in Luau. Currently the main framework behind the upcoming game Wildcard.
