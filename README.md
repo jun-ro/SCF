@@ -4,8 +4,8 @@
 
 <div align="center">
 
-  <a href="">![LUA BABY]([https://img.shields.io/badge/example-one-red](https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white))</a>
-  <a href="">![example2]([https://img.shields.io/badge/example-two-green](https://img.shields.io/badge/ROBLOX-FF0000?style=for-the-badge&logo=roblox&logoColor=white))</a>
+  <a href="">![LUA BABY](https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white)</a>
+  <a href="">![example2](https://img.shields.io/badge/ROBLOX-FF0000?style=for-the-badge&logo=roblox&logoColor=white)</a>
   <a href="">![example3](https://img.shields.io/badge/example-three-blue)</a>
 
 </div>
