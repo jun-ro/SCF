@@ -6,7 +6,7 @@
 
   <a href="">![LUA BABY](https://img.shields.io/badge/Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white)</a>
   <a href="">![example2](https://img.shields.io/badge/ROBLOX-FF0000?style=for-the-badge&logo=roblox&logoColor=white)</a>
-  <a href="">![example3](https://img.shields.io/badge/example-three-blue)</a>
+  <a href="">![example3](https://img.shields.io/badge/ROBLOX_STUDIO-ADD8E6?style=for-the-badge&logo=robloxstudio&logoColor=white)</a>
 
 </div>
 
