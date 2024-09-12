@@ -2,6 +2,13 @@
   <img src="https://github.com/jun-ro/SCF/blob/main/github/SCFNew.png?raw=true" alt="Banner for SCF."/>
 </p>
 
+<div align="center">
+
+  <a href="">![example1](https://img.shields.io/badge/example-one-red)</a>
+  <a href="">![example2](https://img.shields.io/badge/example-two-green)</a>
+  <a href="">![example3](https://img.shields.io/badge/example-three-blue)</a>
+
+</div>
 
 # SCF
 
