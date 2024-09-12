@@ -1,3 +1,3 @@
 <p align="center">
-  <img src="https://github.com/waldyr/Sublime-Installer/blob/master/sublime_text.png?raw=true" alt="Sublime's custom image"/>
+  <img src="https://github.com/jun-ro/SCF/blob/main/github/SCF.png?raw=true" alt="Banner for SCF."/>
 </p>
