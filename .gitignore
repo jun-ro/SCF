@@ -1,0 +1,21 @@
+# Project place file
+/SCF.rbxlx
+
+# Roblox Studio lock files
+/*.rbxlx.lock
+/*.rbxl.lock
+
+# VScode Config
+
+.vscode
+
+# Non framework related stuff
+
+src/ServerScriptService
+src/StarterCharacterScripts
+src/StarterPlayerScripts
+
+# Rojo
+
+README.md
+default.project.json

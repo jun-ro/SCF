@@ -4,7 +4,7 @@ Animation.__index = Animation
 local ContentProvider = game:GetService("ContentProvider")
 local RS = game:GetService("RunService")
 
-local UtilLibrary = require(script.Parent.Global)
+local UtilLibrary = require(script.Parent.Util)
 
 function Animation.new()
 	local self = setmetatable({}, Animation)

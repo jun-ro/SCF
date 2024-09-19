@@ -1,0 +1,34 @@
+name: LuaU CI with StyLua
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install StyLua
+      run: |
+        curl -L -o stylua.zip https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-linux.zip
+        unzip stylua.zip -d stylua
+        sudo mv stylua/stylua /usr/local/bin/stylua
+
+    - name: Run StyLua to check code format
+      run: |
+        stylua . --check
+
+    - name: Upload results if failure
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: stylua-report
+        path: stylua.log
