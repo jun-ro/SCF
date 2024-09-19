@@ -36,3 +36,13 @@ jobs:
     - name: Lint
       run: |
         selene ./src
+  style: 
+    name: Styling
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@v3
+    - uses: JohnnyMorganz/stylua-action@1.0.0
+      with: 
+        token: ${{ secrets.GITHUB_TOKEN }}
+        args: --check .
+  
