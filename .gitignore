@@ -11,11 +11,11 @@
 
 # Non framework related stuff
 
-src/ServerScriptService
-src/StarterCharacterScripts
-src/StarterPlayerScripts
+./src/ServerScriptService
+./src/StarterCharacterScripts
+./src/StarterPlayerScripts
 
 # Rojo
 
-README.md
-default.project.json
+./README.md
+./default.project.json
