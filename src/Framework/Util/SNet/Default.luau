@@ -1,13 +1,11 @@
 local Defaults = {
-	["Events"] = {
-
-	},
+	["Events"] = {},
 	["Callbacks"] = {
 		["GetEvents"] = function()
 			return "Hello World"
 		end,
 	},
-	["Name"] = "Default"
+	["Name"] = "Default",
 }
 
 return Defaults

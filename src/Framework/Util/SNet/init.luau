@@ -14,27 +14,27 @@ local EventRelay = script.EventRelay
 
 function SNet.new()
 	local self = setmetatable({}, SNet)
-	
+
 	self.UNetEvents = {}
-	
+
 	if _G.UNetEvents then
 		self.UNetEvents = _G.UNetEvents
 	else
 		_G.UNetEvents = self.UNetEvents
 	end
-	
+
 	if not _G.UNetEvents.Default then
 		_G.UNetEvents.Default = require(script.Default)
 	end
 
-		
 	return self
 end
 
 function SNet:CreateEvent(hostName: string, eventName: string, func_: () -> ())
 	-- Ensure UNetEvents exists and is initialized properly
 	if not self.UNetEvents[hostName] then
-		self.UNetEvents[hostName] = { Server = {Events = {}, Callbacks = {}}, Client = {Events = {}, Callbacks = {}} }
+		self.UNetEvents[hostName] =
+			{ Server = { Events = {}, Callbacks = {} }, Client = { Events = {}, Callbacks = {} } }
 	end
 
 	-- Assign the event function
@@ -51,11 +51,12 @@ end
 function SNet:CreateCallback(hostName: string, callbackName: string, func_: () -> ())
 	-- Ensure UNetEvents exists and is initialized properly
 	if not self.UNetEvents[hostName] then
-		self.UNetEvents[hostName] = { Server = {Events = {}, Callbacks = {}}, Client = {Events = {}, Callbacks = {}} }
+		self.UNetEvents[hostName] =
+			{ Server = { Events = {}, Callbacks = {} }, Client = { Events = {}, Callbacks = {} } }
 	end
 
 	-- Assign the callback function
-	
+
 	if RunService:IsClient() then
 		self.UNetEvents[hostName].Client.Callbacks[callbackName] = func_
 	else
@@ -67,24 +68,23 @@ end
 
 function SNet:Rollup(listOfFunctions: {})
 	local success, err = pcall(function()
-		for _, relayData: {Server: {}, Client: {}, Name: string} in pairs(listOfFunctions) do
-
-			if RunService:IsServer() then			
-				for name: string, funcs_: () -> () in  pairs(relayData.Server.Events) do
+		for _, relayData: { Server: {}, Client: {}, Name: string } in pairs(listOfFunctions) do
+			if RunService:IsServer() then
+				for name: string, funcs_: () -> () in pairs(relayData.Server.Events) do
 					self:CreateEvent(relayData.Name, name, funcs_)
-				end		
+				end
 
-				for name: string, funcs_: () -> () in  pairs(relayData.Server.Callbacks) do
+				for name: string, funcs_: () -> () in pairs(relayData.Server.Callbacks) do
 					self:CreateCallback(relayData.Name, name, funcs_)
-				end			
+				end
 			else
-				for name: string, funcs_: () -> () in  pairs(relayData.Client.Events) do
+				for name: string, funcs_: () -> () in pairs(relayData.Client.Events) do
 					self:CreateEvent(relayData.Name, name, funcs_)
-				end		
+				end
 
-				for name: string, funcs_: () -> () in  pairs(relayData.Client.Callbacks) do
+				for name: string, funcs_: () -> () in pairs(relayData.Client.Callbacks) do
 					self:CreateCallback(relayData.Name, name, funcs_)
-				end			
+				end
 			end
 		end
 	end)
@@ -95,7 +95,6 @@ function SNet:Rollup(listOfFunctions: {})
 	else
 		print(`[UNet] Rollup Complete!`)
 	end
-	
 end
 
 function SNet:EmitCallback(hostName: string, callbackName: string, ...)
@@ -106,34 +105,34 @@ function SNet:EmitEvent(hostName: string, eventName: string, ...)
 	EventRelay:FireServer(hostName, eventName, ...)
 end
 
-function SNet:EmitClientEvent(player: Player, hostName: string,  eventName: string, ...)
+function SNet:EmitClientEvent(player: Player, hostName: string, eventName: string, ...)
 	EventRelay:FireClient(player, hostName, eventName, ...)
 end
 
-function SNet:EmitClientCallback(player: Player, hostName: string,  eventName: string, ...)
+function SNet:EmitClientCallback(player: Player, hostName: string, eventName: string, ...)
 	return CallbackRelay:InvokeClient(player, hostName, eventName, ...)
 end
 
-function SNet:EmitAllClientEvent(hostName: string,  eventName: string, ...)
+function SNet:EmitAllClientEvent(hostName: string, eventName: string, ...)
 	return CallbackRelay:FireAllClients(hostName, eventName, ...)
 end
 
 function SNet:Compose()
-	if RunService:IsServer() then	
-		EventRelay.OnServerEvent:Connect(function(player: Player, hostName: string, eventName: string, ...) 
+	if RunService:IsServer() then
+		EventRelay.OnServerEvent:Connect(function(player: Player, hostName: string, eventName: string, ...)
 			if self.UNetEvents[hostName].Server.Events[eventName] then
 				self.UNetEvents[hostName].Server.Events[eventName](player, ...)
 			else
 				error(`\n[SNet] "{eventName}" was not found within {hostName}'s Events!`)
 			end
 		end)
-	
+
 		CallbackRelay.OnServerInvoke = function(player: Player, hostName: string, callbackEvent: string, ...)
 			if not self.UNetEvents[hostName].Server.Callbacks[callbackEvent] then
 				error(`\n[SNet] "{callbackEvent}" was not found within {hostName}'s Events!`)
 				return false
 			end
-		
+
 			return self.UNetEvents[hostName].Server.Callbacks[callbackEvent](player, ...)
 		end
 	else
@@ -150,7 +149,7 @@ function SNet:Compose()
 				error(`\n[SNet] "{callbackEvent}" was not found within {hostName}'s Events!`)
 				return false
 			end
-		
+
 			return self.UNetEvents[hostName].Client.Callbacks[callbackEvent](...)
 		end
 	end

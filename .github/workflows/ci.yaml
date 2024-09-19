@@ -1,36 +1,38 @@
-name: LuaU CI with StyLua
+name: CI
 
 on:
+  # Run the CI process on any push to the main branch
   push:
     branches:
-      - main
-      - development
+    - main
+    - development
+  
+  # Run the CI process on an PR that wants to merge into the main branch.
+  # Optionally, under GitHub Branches settings, set 'Require status checks to pass
+  # before merging' to block merges until CI process succeeds.
   pull_request:
     branches:
-      - main
-      - development
+    - main
+    - development
 
 jobs:
-  format:
+
+  # Linting process with Selene
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Install StyLua
-      run: |
-        curl -L -o stylua.zip https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-linux.zip
-        unzip stylua.zip -d stylua
-        sudo mv stylua/stylua /usr/local/bin/stylua
-
-    - name: Run StyLua to check code format
-      run: |
-        stylua ./src/Framework --check
-
-    - name: Upload results if failure
-      if: failure()
-      uses: actions/upload-artifact@v3
+    # Install Foreman & all tools listed in foreman.toml
+    - uses: Roblox/setup-foreman@v1
+      name: Install Foreman
       with:
-        name: stylua-report
-        path: stylua.log
+          version: "^1.0.0"
+          token: ${{ SECRETS.GITHUB_TOKEN }}
+
+    # Run selene against the src directory
+    - name: Lint
+      run: |
+        selene ./src
