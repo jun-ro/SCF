@@ -1,4 +1,5 @@
 # Project place file
+.gitignore
 /SCF.rbxlx
 
 # Roblox Studio lock files
