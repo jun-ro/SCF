@@ -68,22 +68,28 @@ end
 
 function SNet:Rollup(listOfFunctions: {})
 	local success, err = pcall(function()
-		for _, relayData: { Server: {}, Client: {}, Name: string } in pairs(listOfFunctions) do
-			if RunService:IsServer() then
-				for name: string, funcs_: () -> () in pairs(relayData.Server.Events) do
-					self:CreateEvent(relayData.Name, name, funcs_)
-				end
+		for _, relayData: {Server: {}, Client: {}, Name: string} in pairs(listOfFunctions) do
 
-				for name: string, funcs_: () -> () in pairs(relayData.Server.Callbacks) do
-					self:CreateCallback(relayData.Name, name, funcs_)
-				end
+			if RunService:IsServer() then	
+				if relayData.Server ~= nil then
+					for name: string, funcs_: () -> () in  pairs(relayData.Server.Events) do
+						self:CreateEvent(relayData.Name, name, funcs_)
+					end		
+
+					for name: string, funcs_: () -> () in  pairs(relayData.Server.Callbacks) do
+						self:CreateCallback(relayData.Name, name, funcs_)
+					end		
+				end	
 			else
-				for name: string, funcs_: () -> () in pairs(relayData.Client.Events) do
-					self:CreateEvent(relayData.Name, name, funcs_)
-				end
+				
+				if relayData.Client ~= nil then
+					for name: string, funcs_: () -> () in  pairs(relayData.Client.Events) do
+						self:CreateEvent(relayData.Name, name, funcs_)
+					end		
 
-				for name: string, funcs_: () -> () in pairs(relayData.Client.Callbacks) do
-					self:CreateCallback(relayData.Name, name, funcs_)
+					for name: string, funcs_: () -> () in  pairs(relayData.Client.Callbacks) do
+						self:CreateCallback(relayData.Name, name, funcs_)
+					end			
 				end
 			end
 		end
