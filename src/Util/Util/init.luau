@@ -8,4 +8,5 @@ function Global.getPlayer(player: Player)
 	return { Player = player, Character = Character, Humanoid = Humanoid, HumanoidRootPart = HRP }
 end
 
+
 return Global

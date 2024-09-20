@@ -1,4 +1,5 @@
 local Framework = require(game.ReplicatedStorage.Framework)
+local Players = game:GetService("Players")
 local SNet = Framework.SNet.new()
 
 SNet:Rollup({
@@ -6,3 +7,7 @@ SNet:Rollup({
 })
 
 SNet:Compose()
+
+task.wait(2)
+
+print(SNet:EmitClientCallback(Players:GetPlayers()[1], "TestModule", "TestCallback"))
